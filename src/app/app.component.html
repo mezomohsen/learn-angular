@@ -1,0 +1,28 @@
+<label>
+  name:
+  <input type="text" [formControl]="name" />
+</label>
+{{name.value}}
+
+<br />
+<br />
+<form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
+  <label>First name</label>
+  <input type="text" formControlName="firstN" />
+  <br />
+  <br />
+  <label>Last name</label>
+  <input type="text" formControlName="lastN" />
+  <br />
+  <div formGroupName="address">
+    <label>city</label>
+    <input type="text" formControlName="city" />
+    <br />
+    <br />
+    <label>street</label>
+    <input type="text" formControlName="street" />
+    <br />
+  </div>
+  <button type="submit">Send</button>
+  <button type="button" (click)="updateValue()">Update value</button>
+</form>
