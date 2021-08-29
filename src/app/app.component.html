@@ -1,18 +1,31 @@
-<label>
+<!-- <label>
   name:
   <input type="text" [formControl]="name" />
-</label>
-{{name.value}}
+</label> -->
+
 
 <br />
 <br />
 <form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
   <label>First name</label>
-  <input type="text" formControlName="firstN" />
+  <input type="text" formControlName="firstN" required />
+  <br />
+  <span *ngIf="profileForm.controls.firstN.invalid && 
+  profileForm.controls.firstN.touched && 
+  profileForm.controls.firstN.dirty">firstN required</span>
   <br />
   <br />
   <label>Last name</label>
   <input type="text" formControlName="lastN" />
+  <span *ngIf="profileForm.controls.lastN.invalid && 
+  profileForm.controls.lastN.touched && 
+  profileForm.controls.lastN.dirty">lastN required</span>
+  <br />
+  <label>Email</label>
+  <input type="text" formControlName="email" />
+  <span *ngIf="profileForm.controls.email.invalid && 
+  profileForm.controls.email.touched && 
+  profileForm.controls.email.dirty">Email required</span>
   <br />
   <div formGroupName="address">
     <label>city</label>
@@ -23,6 +36,8 @@
     <input type="text" formControlName="street" />
     <br />
   </div>
-  <button type="submit">Send</button>
+  <button type="submit" [disabled]="profileForm.invalid">Send</button>
   <button type="button" (click)="updateValue()">Update value</button>
+  <hr />
+  Form status is {{profileForm.status}}
 </form>
